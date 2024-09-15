@@ -15,7 +15,6 @@ import flash.events.SecurityErrorEvent;
 import openfl.events.ProgressEvent;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
-import general.MSG;
 
 class BambaLoader
    {
@@ -145,18 +144,15 @@ class BambaLoader
          }
       }
       
-       function loadPlayerDataComplete(param1:Event) : Void
-      {
+       function loadPlayerDataComplete(param1:Event) : Void {
          var _loc2_:XML = null;
          _loc2_ = XML(param1.target.data);
-         if(_loc2_.errorCode == 0)
-         {
+         if(_loc2_.errorCode == 0) {
             game.innerCount(14);
             game.gameData.loadPlayerData(_loc2_);
             game.finishLoadPlayerData();
          }
-         else
-         {
+         else {
             game.opening.showErrorMsg(_loc2_.errorCode);
          }
       }
@@ -243,7 +239,7 @@ class BambaLoader
          _loc6_ = new URLLoader();
          _loc6_.addEventListener(Event.COMPLETE,sendNewPlayerDataComplete,false,0,true);
          _loc6_.load(_loc5_);
-         MSG.showWaitBox("יוצר משתמש חדש");
+         MsgBox.showWaitBox("יוצר משתמש חדש");
       }
       
        function loadGeneralDataComplete(param1:Event) : Void
@@ -281,7 +277,7 @@ class BambaLoader
          _loc1_.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS,loadDungeonAssetsProgress,false,0,true);
          _loc1_.load(_loc2_);
          currLoader = _loc1_;
-         MSG.showWaitBox(game.gameData.dictionary.LOADING_DUNGEON_MSG);
+         MsgBox.showWaitBox(game.gameData.dictionary.LOADING_DUNGEON_MSG);
       }
       
       public function loadEnemyAssetStart(param1:Dynamic) : Dynamic
