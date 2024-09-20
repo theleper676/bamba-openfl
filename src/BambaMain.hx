@@ -249,13 +249,207 @@ class BambaMain extends MovieClip {
         trace("innerCountComplete");
     }
 
-   private function hideMap() : Void {
+    private function hideMap() : Void {
         if(gameMap != null) {
             if(this.contains(gameMap.mc)) {
                 this.removeChild(gameMap.mc);
             }
         }
    }
+
+    private function hideStore() : Void {
+        if(store != null) {
+            if(this.contains(store.mc)) {
+                help.showTutorial(14);
+                this.removeChild(store.mc);
+            }
+        }
+    }
+
+    private function finishEnemyAssetLoad() : Void {
+    sound.setLoadDungeonMusic([gameData.getCatalogDungeonData(currDongeonId).music,gameData.getCatalogDungeonData(currDongeonId).fightMusic]);
+    }
+
+    private function showUpgradeCrads() : Void {
+        this.addChild(upgradeSystem.mc);
+        upgradeSystem.update();
+        help.showTutorial(22);
+        sound.playLoopEffect("TOWER_ALCHEMY_MUSIC");
+        centerScreen(upgradeSystem.mc);
+    }
+
+    private function hideQuestManager() : Void {
+        var _loc1_:Bool = false;
+        if(questManager != null) {
+            if(this.contains(questManager.mc)) {
+                if(gameData.playerData.currentQuestId != 0) {
+                            _loc1_ = help.showTutorial(4);
+                            if(!_loc1_) {
+                                _loc1_ = help.showTutorial(15);
+                            }
+                }
+            this.removeChild(questManager.mc);
+            }
+        }
+    }
+
+    public function showMainMenu() : Void {
+        innerCount(28);
+        hideMovie();
+        if(didLogin) {
+            hideAllScreens();
+            sound.stopAll();
+            if(gameMap != null) {
+                gameMap.setBabyAtTower();
+            }
+            showMenuScreen();
+        } else {
+        showOpeningScreen();
+        }
+    }
+
+    private function showMapContinue() : Void {
+        clearInterval(soundTimingInterval);
+        hideTower();
+        this.addChild(gameMap.mc);
+        gameMap.setMap();
+        centerScreen(gameMap.mc);
+        sound.playMusic("MAP_MUSIC");
+        msgShown = false;
+    }
+
+    private function hideTower() : Void {
+        if(tower != null) {
+            if(this.contains(tower.mc)) {
+                this.removeChild(tower.mc);
+            }
+        }
+    }
+
+    private function checkUser() : Void {
+        innerCount(1);
+        userSharedObject = SharedObject.getLocal("Rlofe54836");
+        if(userSharedObject.data.Rlofe54836 != 78512963482) {
+            userSharedObject.data.Rlofe54836 = 78512963482;
+            userSharedObject.flush();
+            innerCount(11);
+        }
+        innerCount(10);
+    }
+
+    private function showDungeon() : Void {
+        var _loc1_:Dynamic = null;
+        clearInterval(soundTimingInterval);
+        MsgBox.closeWaitBox();
+        hideAllScreens(false);
+        aDungeon.MC.visible = true;
+        aDungeon.playDungeonMusic();
+        _loc1_ = help.showTutorial(6);
+        if(!_loc1_) {
+            _loc1_ = help.showTutorial(16);
+        }
+    }
+
+    public function hideMovie() : Void {
+        movie.stopMovie();
+    }
+
+    private function hideMagicBook() : Void {
+        if(magicBook != null) {
+            if(this.contains(magicBook.mc)) {
+                this.removeChild(magicBook.mc);
+            }
+        }
+    }
+
+
+
+    public function foo  (param1:Dynamic) : Dynamic {
+        this.removeChild(param1);
+        if(didLogin) {
+            showMainMenu();
+        } else {
+            startNewPlayer();
+        }
+    }
+    // TODO: The decompiler did not determine the where this function go to,
+    //  so need to check where it fails in the process
+
+    private function showCharacterBuild() : Void {
+        if(!Math.isNaN(showCharacterBuildInteval)) {
+            clearInterval(showCharacterBuildInteval);
+        }
+    help.resetTutorial();
+    frameMC.holesMC.gotoAndStop("no_order");
+        hideNewPlayer();
+        hideMenuScreen();
+        if(characterBuild == null) {
+            characterBuild = new BambaCharacterBuildScreen(this);
+        } else {
+            characterBuild.reset();
+        }
+        this.addChild(characterBuild.mc);
+        cornerScreen(characterBuild.mc);
+        characterBuild.slideIn();
+    }
+
+    private function showMap() : Void {
+        if(this.contains(tower.mc)) {
+            sound.playEffect("TOWER_TO_MAP");
+            msgShown = true;
+            soundTimingInterval = setInterval(showMapContinue,1500);
+        } else {
+            showMapContinue();
+        }
+    }
+
+    private function finishDungeonAssetLoad() : Void {
+    var _loc1_:BambaDungeonData = null;
+    var _loc2_:BambaEnemy = null;
+    var _loc3_:Dynamic = null;
+    _loc1_ = gameData.getCatalogDungeonData(currDongeonId);
+        if(questManager.currQuestDungeonId == currDongeonId) {
+            currEnemyId = questManager.currQuestEnemyId;
+            currDungeonDifficulty = questManager.currQuestDungeonDifficulty;
+        } else if(_loc1_.currEnemyId != 0) {
+            currEnemyId = _loc1_.currEnemyId;
+            currDungeonDifficulty = _loc1_.currDungeonDifficulty;
+        } else {
+            currEnemyId = _loc1_.enemiesIds[Math.floor(Math.random() * _loc1_.enemiesIds.length)];
+            currDungeonDifficulty = Math.floor(Math.random() * 3) + 1;
+        }
+        if(Math.isNaN(currEnemyId)) {
+            finishEnemyAssetLoad();
+        } else {
+            _loc2_ = gameData.getCatalogEnemy(currEnemyId,1);
+            _loc3_ = _loc2_.assetFileName;
+            gameLoader.loadEnemyAssetStart(_loc3_);
+        }
+    }
+
+    private function finishLoadPlayerData() : Void {
+    didLogin = true;
+    Heb.setText(opening.mc.loadingBarMC.msgDT,"...שם המשתמש נמצא. טוען משחק");
+    trace("BambaMain.finishLoadPlayerData");
+        if(finishLoading) {
+            startGame();
+        }
+    }
+
+    public function centerScreen(param1:MovieClip) : Dynamic {
+        if(frameMC != null) {
+            this.setChildIndex(frameMC,this.numChildren - 1);
+        }
+        if(param1.orgWidth == null) {
+            param1.x = (945 - param1.width) / 2;
+            param1.y = (650 - param1.height) / 2;
+        } else {
+            param1.x = (945 - param1.orgWidth) / 2;
+            param1.y = (650 - param1.orgHeight) / 2;
+        }
+    }
+
+
 
 
 }

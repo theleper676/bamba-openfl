@@ -410,7 +410,7 @@ class BambaSoundManager
         }
     }
     
-    public function setLoadDungeonMusic(param1 : Array<Dynamic>) : Dynamic
+    public function setLoadDungeonMusic(param1 : Array<String>) : Dynamic
     {
         var _loc2_ : Dynamic = null;
         var _loc3_ : Dynamic = null;
@@ -757,7 +757,7 @@ class BambaSoundManager
         as3hx.Compat.clearInterval(continueLoadingInterval);
     }
     
-    public function playLoopEffect(param1 : String) : Dynamic
+    public function playLoopEffect(param1 : String) : Void
     {
         var _loc2_ : SoundChannel = null;
         if (param1 != "")
