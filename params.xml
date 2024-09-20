@@ -1,0 +1,103 @@
+﻿<script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app40.us.archive.org';v.server_ms=209;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/ait-client-rewrite.js" charset="utf-8"></script>
+<script type="text/javascript">
+WB_wombat_Init("https://web.archive.org/web", "20150208140219", "becl23.b3.cdn.co.il");
+</script>
+<script type="text/javascript" src="/_static/js/wbhack.js" charset="utf-8"></script>
+<script type="text/javascript">
+__wbhack.init('https://web.archive.org/web');
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css" />
+<!-- End Wayback Rewrite JS Include -->
+<params>
+	
+
+	<!--<playerDataSource>xmls/playerData.xml</playerDataSource> 
+	<newPlayerDataSource>xmls/newPlayerAnswer.xml</newPlayerDataSource> 
+	<updatePlayerDataSource>local</updatePlayerDataSource>
+	<forgetPassSource>local</forgetPassSource>	
+	<sendPassSource>http://www.e-dologic.co.il/osem/bamba/MagicKingdom/sendPassword.asp</sendPassSource>  -->
+	
+	
+	<!--<playerDataSource>http://bamba.triviabox.com/Login.aspx</playerDataSource> 
+	<newPlayerDataSource>http://bamba.triviabox.com/Register.aspx</newPlayerDataSource> 
+	<updatePlayerDataSource>http://bamba.triviabox.com/UpdateDetails.aspx</updatePlayerDataSource>
+	<forgetPassSource>http://bamba.triviabox.com/forgotPassword.aspx</forgetPassSource>
+	<sendPassSource>http://www.e-dologic.co.il/osem/bamba/MagicKingdom/sendPassword.asp</sendPassSource> -->
+	
+	<playerdatasource>http://www.e-dologic.co.il/osem/bamba/MagicKingdom/Login.aspx</playerdatasource> 
+	<newplayerdatasource>http://www.e-dologic.co.il/osem/bamba/MagicKingdom/Register.aspx</newplayerdatasource> 
+	<updateplayerdatasource>http://www.e-dologic.co.il/osem/bamba/MagicKingdom/UpdateDetails.aspx</updateplayerdatasource>
+	<forgetpasssource>http://www.e-dologic.co.il/osem/bamba/MagicKingdom/forgotPassword.aspx</forgetpasssource>
+	<sendpasssource>http://www.e-dologic.co.il/osem/bamba/MagicKingdom/sendPassword.asp</sendpasssource>
+	 
+	  
+	<!-- <playerDataSource>http://oded.noobo.co.il/BambaSite/Login.aspx</playerDataSource> 
+	<newPlayerDataSource>http://oded.noobo.co.il/BambaSite/Register.aspx</newPlayerDataSource> 
+	<updatePlayerDataSource>http://oded.noobo.co.il/BambaSite/UpdateDetails.aspx</updatePlayerDataSource>
+	<forgetPassSource>http://oded.noobo.co.il/BambaSite/forgotpassword.aspx</forgetPassSource> -->
+	
+	
+	<xmlpath>xmls</xmlpath>
+	<assetspath>assets</assetspath>
+	<soundspath>sounds</soundspath>
+	
+	<dictionaryfilename>dictionary.xml</dictionaryfilename>
+	<generaldatafilename>generalData.xml</generaldatafilename>
+	<playerlevelsfilename>playerLevels.xml</playerlevelsfilename>
+	<magicbookfilename>magicBook.xml</magicbookfilename>
+	<cardsfilename>cards.xml</cardsfilename>
+	<enemiesfilename>enemies.xml</enemiesfilename>
+	<enemieslevelsfilename>enemiesLevels.xml</enemieslevelsfilename>
+	<itemsbasefilename>itemsBase.xml</itemsbasefilename>
+	<itemsfilename>items.xml</itemsfilename>
+	<storeitemsfilename>storeItems.xml</storeitemsfilename>
+	<prizesfilename>prizes.xml</prizesfilename>
+	<surprisesfilename>surprises.xml</surprisesfilename>
+	<dungeonsdatafilename>dungeonsData.xml</dungeonsdatafilename>
+	<questsfilename>quests.xml</questsfilename>
+	<helpfilename>help.xml</helpfilename>
+	<soundsfilename>sounds.xml</soundsfilename>	<!-- loaded in the end-->
+	
+	<openingassets>openingAssets.swf,openingScreen</openingassets> <!-- loaded in the start-->
+	<generalassets>general.swf,msgBox,waitBox,yesNoBox,yesNoBox,winBox,questBox,levelBox,generalFrame,prizeIcon,questIcon,skipButton</generalassets>
+	<menuassets>menu.swf,menuScreen</menuassets>
+	<newplayerassets>newPlayer.swf,newPlayerScreen,characterBuildScreen</newplayerassets>
+	<cardsassets>cards.swf,cardBase,magicBase,cardPopup</cardsassets>
+	<itemsassets>items.swf,stickMC,capeMC,beltMC,hatMC,shoesMC,hairMC,eyesMC,daiperMC,itemFrame,itemPopup</itemsassets>
+	<babyassets>baby.swf,babyMain,babyAttacks</babyassets>
+	<!--<enemiesAssets>enemies2.swf,enemy01,enemy01b,enemy02,enemy02b,enemy03,enemy03b,enemy04,enemy04b,enemy05,enemy05b,enemy01a,enemy02a,enemy03a,enemy04a,enemy05a</enemiesAssets>
+	-->
+	<fightgraphicsassets>fightGraphics.swf,fightScreen,fighterIcon,hitAnim,hitMatrix,hitPoints</fightgraphicsassets>
+	<dungeoniconsassets>dungeonGraphics.swf,dungeonMain,dungeonIcon,possibleMove,enemyTip</dungeoniconsassets>
+	<towerassets>towerScreens.swf,towerScreen,questManagerScreen,magicBookScreen,cardsUpgradeScreen,storeScreen,characterScreen</towerassets>
+	<mapassets>mapGraphics.swf,kingdomMap,mapIcon</mapassets>
+	<helpassets>help.swf,help01,help02,help03,help04,help05,help06,help07,help08,emptyCard</helpassets>
+	
+	<movieasset>IntroBamba.swf</movieasset>
+	
+	<!-- dungeon file name is saved in dungeonsData.xml-->
+	<dungeonassetsnames>dungeonMap,fightBack</dungeonassetsnames>
+	<enemyassetsnames>enemyReg,enemyBoss,enemyAttacks</enemyassetsnames>
+</params><!--
+     FILE ARCHIVED ON 14:02:19 Feb 08, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:14:22 May 25, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  LoadShardBlock: 77.886 (3)
+  esindex: 0.01
+  captures_list: 101.969
+  CDXLines.iter: 14.743 (3)
+  PetaboxLoader3.datanode: 107.652 (4)
+  exclusion.robots: 0.258
+  exclusion.robots.policy: 0.241
+  RedisCDXSource: 5.393
+  PetaboxLoader3.resolve: 58.773
+  load_resource: 99.746
+-->

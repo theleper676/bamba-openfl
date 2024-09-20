@@ -1,0 +1,60 @@
+﻿<script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app103.us.archive.org';v.server_ms=114;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/ait-client-rewrite.js" charset="utf-8"></script>
+<script type="text/javascript">
+WB_wombat_Init("https://web.archive.org/web", "20150208140255", "becl23.b3.cdn.co.il");
+</script>
+<script type="text/javascript" src="/_static/js/wbhack.js" charset="utf-8"></script>
+<script type="text/javascript">
+__wbhack.init('https://web.archive.org/web');
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css" />
+<!-- End Wayback Rewrite JS Include -->
+<surprises>
+	<!-- types: 1-move 2-enemy 3-bad prize 4-good prize-->
+	<surprise>
+		<id>1</id>
+		<name>החלף מקום</name>
+		<desc>נתקלת בפורטל קסמים שיעביר אותך למקום אחר במבוך</desc>
+		<type>1</type>
+	</surprise>
+	<surprise>
+		<id>2</id>
+		<name>אויב</name>
+		<desc>נתקלת באויב</desc>
+		<type>2</type>
+	</surprise>
+	<surprise>
+		<id>3</id>
+		<name>גנב</name>
+		<desc>בזמן שישנת בא גנב ולקח לך במבה</desc>
+		<type>3</type>
+		<prizesids>100</prizesids>
+	</surprise>
+	<surprise>
+		<id>4</id>
+		<name>אוצר</name>
+		<desc>מצאת אוצר</desc>
+		<type>4</type>
+		<prizesids>2</prizesids>
+	</surprise>
+</surprises><!--
+     FILE ARCHIVED ON 14:02:55 Feb 08, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:21:38 May 25, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  LoadShardBlock: 33.897 (3)
+  esindex: 0.006
+  captures_list: 69.641
+  CDXLines.iter: 13.406 (3)
+  PetaboxLoader3.datanode: 40.264 (4)
+  exclusion.robots: 0.231
+  exclusion.robots.policy: 0.219
+  RedisCDXSource: 19.631
+  load_resource: 39.427
+-->
