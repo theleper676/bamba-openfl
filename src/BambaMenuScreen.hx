@@ -4,6 +4,7 @@ import flash.utils.*;
 import general.ButtonUpdater;
 import general.Heb;
 import general.MsgBox;
+import BambaAssets.menuScreen;
 
 class BambaMenuScreen
 {
@@ -14,16 +15,16 @@ class BambaMenuScreen
     private var mc : MovieClip;
     
     @:allow()
-    private var game : MovieClip;
+    private var game : BambaMain;
     
     @:allow()
     private var clickContInterval : Dynamic;
     
-    public function new(param1 : Dynamic)
+    public function new(main : BambaMain)
     {
         super();
-        game = param1;
-        mc = new bambaAssets.MenuScreen();
+        game = main;
+        mc = new BambaAssets.MenuScreen();
         babyGraphics = new bambaAssets.BabyMain();
         babyGraphics.stop();
         mc.babyMC.addChild(babyGraphics);
@@ -40,7 +41,7 @@ class BambaMenuScreen
     }
     
     @:allow()
-    private function vidoeClicked(param1 : MouseEvent) : Void
+    private function vidoeClicked(main : MouseEvent) : Void
     {
         if (!game.msgShown)
         {
@@ -107,7 +108,7 @@ class BambaMenuScreen
     }
     
     @:allow()
-    private function startClicked(param1 : MouseEvent) : Void
+    private function startClicked(main : MouseEvent) : Void
     {
         if (!game.msgShown)
         {
@@ -120,17 +121,17 @@ class BambaMenuScreen
     }
     
     @:allow()
-    private function helpClicked(param1 : MouseEvent) : Void
+    private function helpClicked(main : MouseEvent) : Void
     {
         if (!game.msgShown)
         {
             game.sound.playEffect("GENERAL_MENU_CLICK");
-            game.openHelp(param1);
+            game.openHelp(main);
         }
     }
     
     @:allow()
-    private function exitClicked(param1 : MouseEvent) : Void
+    private function exitClicked(main : MouseEvent) : Void
     {
         if (!game.msgShown)
         {
@@ -174,7 +175,7 @@ class BambaMenuScreen
     }
     
     @:allow()
-    private function newCharacterClicked(param1 : MouseEvent) : Void
+    private function newCharacterClicked(main : MouseEvent) : Void
     {
         if (!game.msgShown)
         {

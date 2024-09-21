@@ -4,15 +4,16 @@ import openfl.display.*;
 import openfl.events.*;
 import openfl.errors.SecurityError;
 import openfl.external.*;
-// import openfl.net.LocalConnection;
+import openfl.net.*;
 import openfl.net.SharedObject;
 import openfl.system.*;
 import openfl.utils.*;
+import openfl.Lib.*;
 import general.ButtonUpdater;
 import general.Heb;
 import general.MsgBox;
 import general.PlayerDataUpdater;
-import Dynamic;
+import haxe.Exception;
 
 class BambaMain extends MovieClip {
 
@@ -25,7 +26,7 @@ class BambaMain extends MovieClip {
 
     private var gameAssets:BambaAssets;
 
-    public var soundTimingInterval:Float;
+    public var soundTimingInterval:UInt;
 
     private var currDongeonId:Float;
 
@@ -75,11 +76,11 @@ class BambaMain extends MovieClip {
 
     public var userSharedObject:SharedObject;
 
-    private var showCharacterBuildInteval:Float;
+    private var showCharacterBuildInteval:UInt;
 
     private var eventTypeCodes:Array<Int>;
 
-    private var frameMC:MovieClip;
+    private var frameMC:DisplayObject;
 
     private var dungeonMC:MovieClip;
 
@@ -362,8 +363,6 @@ class BambaMain extends MovieClip {
         }
     }
 
-
-
     public function foo  (param1:Dynamic) : Dynamic {
         this.removeChild(param1);
         if(didLogin) {
@@ -449,7 +448,191 @@ class BambaMain extends MovieClip {
         }
     }
 
+    public function cornerScreen(param1:MovieClip) : Void {
+        if(frameMC != null) {
+            this.setChildIndex(frameMC,this.numChildren - 1);
+        }
+        param1.x = 29;
+        param1.y = 72;
+    }
 
+    private function addFrame() : Void {
+        if(frameMC == null) {
+            frameMC = new BambaAssets.GeneralFrame();
+            ButtonUpdater.setButton(frameMC.helpMC,openHelp);
+            ButtonUpdater.setButton(frameMC.mainMenuMC,mainMenuClicked);
+            sound.setMusicVolumeBar(frameMC.musicVolumeMC);
+            sound.setEffectsVolumeBar(frameMC.effectsVolumeMC);
+            this.addChild(frameMC);
+        } else {
+            frameMC.visible = true;
+        }
+    }
 
+    private function hideFrame() : Void {
+        if(frameMC != null) {
+            frameMC.visible = false;
+        }
+    }
 
+    private function startGame() : Void {
+        var _loc1_:String = null;
+        if(finishLoading && didLogin) {
+            if(gameData.playerData.pName == "") {
+                startNewPlayer();
+            } else {
+                addFrame();
+                MsgBox.init(this);
+                PlayerDataUpdater.init(this);
+                if(menu == null) {
+                    menu = new BambaMenuScreen(this);
+                }
+                tower = new BambaTower(this);
+                questManager = new BambaQuestManager(this);
+                magicBook = new BambaMagicBook(this);
+                upgradeSystem = new BambaUpgradeSystem(this);
+                gameMap = new BambaMap(this);
+                character = new BambaCharacterScreen(this);
+                store = new BambaStore(this);
+                gameData.playerData.setLevelDependingData();
+                _loc1_ = "order" + gameData.playerData.orderCode;
+                frameMC.holesMC.gotoAndStop(_loc1_);
+                hideCharacterBuild();
+                hideOpeningScreen();
+                showMenuScreen();
+            }
+        }  else if (!finishLoading)  {
+            Heb.setText(opening.mc.loadingBarMC.msgDT.text,"רגע... עוד לא סיימנו לטעון");
+        }
+    }
+
+    private function hideNewPlayer() : Void {
+        if(newPlayer != null) {
+            if(this.contains(newPlayer.mc)) {
+                this.removeChild(newPlayer.mc);
+            }
+        }
+    }
+
+    private function hideUpgradeCrads() : Void {
+        if(upgradeSystem != null) {
+            if(this.contains(upgradeSystem.mc)) {
+                this.removeChild(upgradeSystem.mc);
+            }
+        }
+    }
+
+    private function showMenuScreen() : Void {
+        hideCharacterBuild();
+        hideMenuScreen();
+        sound.playMusic("MAP_MUSIC");
+        if(menu == null) {
+            menu = new BambaMenuScreen(this);
+        }
+        this.addChild(menu.mc);
+        menu.update();
+        cornerScreen(menu.mc);
+        menu.slideIn();
+    }
+
+    public function hideAllScreens(hideAllScreens:Bool = true) : Void {
+        if(hideAllScreens)
+        {
+            if(aDungeon != null)
+            {
+                aDungeon.exitDungeon();
+            }
+        }
+        hideMap();
+        hideTower();
+        hideStore();
+        hideCharacter();
+        hideUpgradeCrads();
+        hideMagicBook();
+        hideQuestManager();
+        hideMenuScreen();
+        hideOpeningScreen();
+        hideCharacterBuild();
+        hideNewPlayer();
+    }
+
+    private  function hideMenuScreen() : Void {
+        if(menu != null)
+        {
+            if(this.contains(menu.mc)) {
+                this.removeChild(menu.mc);
+            }
+        }
+    }
+
+    private function closeDungeon() : Void {
+        if(this.contains(dungeonMC)) {
+            this.removeChild(dungeonMC);
+            gameLoader.savePlayerData();
+            showMap();
+        }
+        try {
+            //I dont understand the meaning of this function
+            return;
+            // new LocalConnection().connect("foo");
+            // new LocalConnection().connect("foo");
+        } catch(e:Exception) {
+            trace(e);
+        }
+    }
+
+    public function getHTMLvars() : Void {
+        var _loc1_:Dynamic<String> = null;
+        _loc1_ = this.root.loaderInfo.parameters;
+        // _loc1_ = LoaderInfo(this.root.loaderInfo).parameters;
+        // ToolID = String(_loc1_.ToolID);
+        if(ToolID == "undefined") {
+            ToolID = "SBCKOS";
+        }
+    }
+
+    private function showMagicBook() : Void {
+        this.addChild(magicBook.mc);
+        magicBook.update();
+        help.showTutorial(20);
+        sound.playLoopEffect("TOWER_BOOK_MUSIC");
+        centerScreen(magicBook.mc);
+    }
+
+    private  function hideOpeningScreen() : Void {
+        if(opening != null) {
+            if(this.contains(opening.mc)) {
+                this.removeChild(opening.mc);
+            }
+        }
+    }
+
+    private function finishDungeonMusicLoad() : Void {
+        if(aDungeon != null) {
+            aDungeon.clearEvents();
+        }
+        dungeonMC = new BambaAssets.dungeonMain();
+        this.addChildAt(dungeonMC,0);
+        if(questManager.currQuestDungeonId == currDongeonId) {
+            aDungeon = new BambaDungeon(this,dungeonMC,questManager.currQuestDungeonId,questManager.currQuestDungeonDifficulty,questManager.currQuestEnemyId,questManager.currSpecialEnemy,questManager.currMarkBoss,questManager.currMarkAllEnemies,questManager.currSpecialTreasure);
+        } else {
+            aDungeon = new BambaDungeon(this,dungeonMC,currDongeonId,currDungeonDifficulty,currEnemyId,false,false,false,false);
+        }
+        sound.playEffect("MAP_TO_MAZE");
+        aDungeon.MC.visible = false;
+        soundTimingInterval = setInterval(showDungeon,1200);
+    }
+
+    public function initGeneral() : Void {
+        MsgBox.init(this);
+        PlayerDataUpdater.init(this);
+    }
+
+    private  function showStore() : Void {
+        this.addChild(store.mc);
+        help.showTutorial(12);
+        centerScreen(store.mc);
+        store.update();
+        sound.playLoopEffect("TOWER_STORE_MUSIC");
+    }
 }

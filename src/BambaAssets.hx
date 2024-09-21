@@ -1,4 +1,5 @@
-import flash.display.MovieClip;
+import openfl.display.MovieClip;
+import openfl.display.DisplayObject;
 
 class BambaAssets
 {
@@ -60,7 +61,7 @@ class BambaAssets
     
     public static var daiperMC : Class<Dynamic>;
     
-    public static var generalFrame : Class<Dynamic>;
+    public static var GeneralFrame : DisplayObject;
     
     public static var newPlayerScreen : Class<Dynamic>;
     
@@ -102,7 +103,7 @@ class BambaAssets
     
     public static var babyMain : Class<Dynamic>;
     
-    public static var menuScreen : Class<Dynamic>;
+    public static var MenuScreen : MovieClip;
     
     public static var questManagerScreen : Class<Dynamic>;
     
@@ -321,9 +322,9 @@ class BambaAssets
     }
     
     @:allow()
-    private function define_menuScreen(param1 : Class<Dynamic>) : Dynamic
+    private function define_menuScreen(menuScreen : MovieClip) : MovieClip
     {
-        menuScreen = Type.getClass(param1);
+        MenuScreen = menuScreen;
     }
     
     @:allow()
@@ -453,9 +454,9 @@ class BambaAssets
     }
     
     @:allow()
-    private function define_generalFrame(param1 : Class<Dynamic>) : Dynamic
+    private function define_generalFrame(param1 :DisplayObject) : Void
     {
-        generalFrame = Type.getClass(param1);
+        GeneralFrame = param1;
     }
     
     @:allow()
