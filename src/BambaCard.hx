@@ -1,11 +1,10 @@
-import flash.display.*;
-import flash.events.MouseEvent;
-import flash.geom.ColorTransform;
-import flash.text.TextFormat;
+import openfl.display.*;
+import openfl.events.MouseEvent;
+import openfl.geom.ColorTransform;
+import openfl.text.TextFormat;
 import general.Heb;
-
-class BambaCard
-{
+import haxe.xml.Fast;
+class BambaCard  {
     public var ingredient1 : Float;
     
     public var ingredient4 : Float;
@@ -32,7 +31,7 @@ class BambaCard
     
     public var mc : MovieClip;
     
-    public var game : Dynamic;
+    public var game : Main;
     
     public var regenerateAmount : Float;
     
@@ -66,7 +65,7 @@ class BambaCard
     
     public var healAmount : Float;
     
-    public var xmlData : FastXML;
+    public var xmlData : Fast;
     
     public var color : Float;
     
@@ -82,8 +81,7 @@ class BambaCard
     
     public var moveDir : Float;
     
-    public function new(param1 : FastXML)
-    {
+    public function new(param1 : Fast) {
         super();
         xmlData = param1;
         id = param1.node.id.innerData;
@@ -163,10 +161,10 @@ class BambaCard
     }
     
     @:allow()
-    private function init(param1 : Dynamic) : Dynamic
+    private function init(game: Main) : Dynamic
     {
         var _loc2_ : Dynamic = null;
-        game = param1;
+        game = game;
         if (magicId != 0)
         {
             _loc2_ = game.gameData.getCatalogMagic(magicId);

@@ -3,11 +3,7 @@ package;
 import openfl.display.*;
 import openfl.events.*;
 import openfl.errors.SecurityError;
-import openfl.external.*;
-import openfl.net.*;
 import openfl.net.SharedObject;
-import openfl.system.*;
-import openfl.utils.*;
 import openfl.Lib.*;
 import general.ButtonUpdater;
 import general.Heb;
@@ -15,9 +11,8 @@ import general.MsgBox;
 import general.PlayerDataUpdater;
 import haxe.Exception;
 
-class BambaMain extends MovieClip {
+class Main extends MovieClip {
 
-    @:allow(general)
     private var currDungeonDifficulty:Float;
 
     private var gameMap:BambaMap;
@@ -85,9 +80,9 @@ class BambaMain extends MovieClip {
     private var dungeonMC:MovieClip;
 
     public function new(){
+        super();
         eventTypeCodes = [1,3,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
         eventTypeNames = ["hasifa","lead","enter game","uniq","new user enter","new user game enter","user game enter","game enter","movie","new character","exit","start mission1","start mission2","start mission3","start mission4","end mission1","end mission2","end mission3","end mission4","help","main"];
-        super();
         getHTMLvars();
         checkUser();
         gameData = new BambaData(this);
@@ -611,7 +606,7 @@ class BambaMain extends MovieClip {
         if(aDungeon != null) {
             aDungeon.clearEvents();
         }
-        dungeonMC = new BambaAssets.dungeonMain();
+        dungeonMC = new BambaAssets.DungeonMain();
         this.addChildAt(dungeonMC,0);
         if(questManager.currQuestDungeonId == currDongeonId) {
             aDungeon = new BambaDungeon(this,dungeonMC,questManager.currQuestDungeonId,questManager.currQuestDungeonDifficulty,questManager.currQuestEnemyId,questManager.currSpecialEnemy,questManager.currMarkBoss,questManager.currMarkAllEnemies,questManager.currSpecialTreasure);
@@ -635,4 +630,28 @@ class BambaMain extends MovieClip {
         store.update();
         sound.playLoopEffect("TOWER_STORE_MUSIC");
     }
+
+    private function showOpeningScreen() : Void {
+        sound.stopAll();
+        didLogin = false;
+        if(opening == null) {
+            opening = new BambaOpeningScreen(this);
+        }
+        this.addChild(opening.mc);
+    }
+
+    private function showCharacterBuildAfterNewPlayer() : Void {
+        newPlayer.slideOut();
+        showCharacterBuildInteval = setInterval(showCharacterBuild,600);
+    }
+
+    private function startDungeon(dongeonId:Float) : Void {
+        var _loc2_:Float = Math.NaN;
+        var _loc3_:BambaDungeonData = null;
+        _loc2_ = 100 + dongeonId;
+        currDongeonId = dongeonId;
+        _loc3_ = gameData.getCatalogDungeonData(currDongeonId);
+        gameLoader.loadDungeonAssetStart(_loc3_.assetFileName);
+    }
+
 }

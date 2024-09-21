@@ -145,7 +145,7 @@ class BambaNewPlayerScreen
     }
     
     @:allow()
-    private function slideOut() : Dynamic
+    private function slideOut() : Void
     {
         game.sound.playEffect("GENERAL_MENU_SLIDE_OUT");
         mc.gotoAndPlay("slideOut");

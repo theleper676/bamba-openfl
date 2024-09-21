@@ -1,15 +1,14 @@
 package gs;
 
 import haxe.Constraints.Function;
-import flash.display.DisplayObject;
-import flash.display.Sprite;
-import flash.events.Event;
-import flash.events.TimerEvent;
-import flash.geom.ColorTransform;
-import flash.utils.*;
+import openfl.display.DisplayObject;
+import openfl.display.Sprite;
+import openfl.events.Event;
+import openfl.events.TimerEvent;
+import openfl.geom.ColorTransform;
+import openfl.utils.*;
 
-class TweenLite
-{
+class TweenLite {
     public var enabled(get, set) : Bool;
 
     private static var _classInitted : Bool;
@@ -24,7 +23,7 @@ class TweenLite
     
     public static var defaultEase : Function = TweenLite.easeOut;
     
-    public static var masterList : Dictionary = new Dictionary(false);
+    public static var masterList : Dictionary<Dynamic, Dynamic> = new Dictionary(false);
     
     public static var timingSprite : Sprite = new Sprite();
     
@@ -66,8 +65,7 @@ class TweenLite
     
     public var initTime : Float;
     
-    public function new(param1 : Dynamic, param2 : Float, param3 : Dynamic)
-    {
+    public function new(param1 : Dynamic, param2 : Float, param3 : Dynamic) {
         var _loc4_ : Int = 0;
         super();
         if (param1 == null)
@@ -91,7 +89,7 @@ class TweenLite
         }
         this.vars = param3;
         this.duration = param2 || 0.001;
-        this.delay = as3hx.Compat.parseFloat(param3.delay) || 0;
+        this.delay = Std.parseFloat(param3.delay) || 0 ;
         this.combinedTimeScale = as3hx.Compat.parseFloat(param3.timeScale) || 1;
         this.active = param2 == 0 && this.delay == 0;
         this.target = param1;
@@ -141,13 +139,11 @@ class TweenLite
         }
     }
     
-    public static function frameProxy(param1 : Dynamic, param2 : Float = 0) : Void
-    {
+    public static function frameProxy(param1 : Dynamic, param2 : Float = 0) : Void {
         param1.info.target.gotoAndStop(Math.round(param1.target.frame));
     }
     
-    public static function removeTween(param1 : TweenLite, param2 : Bool = true) : Void
-    {
+    public static function removeTween(param1 : TweenLite, param2 : Bool = true) : Void {
         if (param1 != null)
         {
             if (param2)
@@ -233,6 +229,11 @@ class TweenLite
                 _loc5_--;
             }
         }
+    }
+
+    private function get_enabled() : Bool
+    {
+        return !this.gc;
     }
     
     public static function delayedCall(param1 : Float, param2 : Function, param3 : Array<Dynamic> = null) : TweenLite
@@ -554,10 +555,7 @@ class TweenLite
         }
     }
     
-    private function get_enabled() : Bool
-    {
-        return !this.gc;
-    }
+
     
     public function complete(param1 : Bool = false) : Void
     {

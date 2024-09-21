@@ -63,7 +63,7 @@ class BambaAssets
     
     public static var GeneralFrame : DisplayObject;
     
-    public static var newPlayerScreen : Class<Dynamic>;
+    public static var newPlayerScreen : MovieClip;
     
     public static var hatMC : Class<Dynamic>;
     
@@ -85,7 +85,7 @@ class BambaAssets
     
     public static var skipButton : Class<Dynamic>;
     
-    public static var dungeonMain : Class<Dynamic>;
+    public static var DungeonMain : MovieClip;
     
     public static var characterBuildScreen : Class<Dynamic>;
     
@@ -152,7 +152,7 @@ class BambaAssets
     {
         cardBase = Type.getClass(param1);
     }
-    
+
     @:allow()
     private function define_help01(param1 : Class<Dynamic>) : Dynamic
     {
@@ -268,9 +268,9 @@ class BambaAssets
     }
     
     @:allow()
-    private function define_dungeonMain(param1 : Class<Dynamic>) : Dynamic
+    private function define_dungeonMain(dungeon : Dynamic) : MovieClip
     {
-        dungeonMain = Type.getClass(param1);
+        DungeonMain = dungeon;
     }
     
     @:allow()
@@ -436,9 +436,9 @@ class BambaAssets
     }
     
     @:allow()
-    private function define_newPlayerScreen(param1 : Class<Dynamic>) : Dynamic
+    private function define_newPlayerScreen(newPlayerScreen : Dynamic) : MovieClip
     {
-        newPlayerScreen = Type.getClass(param1);
+        newPlayerScreen = newPlayerScreen;
     }
     
     @:allow()

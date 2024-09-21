@@ -4,7 +4,7 @@ import flash.utils.*;
 import general.ButtonUpdater;
 import general.Heb;
 import general.MsgBox;
-import BambaAssets.menuScreen;
+import BambaAssets.MenuScreen;
 
 class BambaMenuScreen
 {
@@ -15,12 +15,12 @@ class BambaMenuScreen
     private var mc : MovieClip;
     
     @:allow()
-    private var game : BambaMain;
+    private var game : Main;
     
     @:allow()
     private var clickContInterval : Dynamic;
     
-    public function new(main : BambaMain)
+    public function new(main : Main)
     {
         super();
         game = main;
@@ -169,7 +169,7 @@ class BambaMenuScreen
     @:allow()
     private function exitClickedCont() : Dynamic
     {
-        as3hx.Compat.clearInterval(clickContInterval);
+        Math.clearInterval(clickContInterval);
         game.msgShown = false;
         game.exitToOpeningScreen();
     }

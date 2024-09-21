@@ -2,9 +2,9 @@
 <project>
 	
 	<meta title="BambaOpenfl" package="com.sample.bambaopenfl" version="1.0.0" company="Company Name" />
-	<app main="BambaMain" path="Export" file="BambaMain" />
-	
-	<source path="\src\" />
+	<app main="Main" path="bin" file="Main" />
+
+	<source path="src" />
 	
 	<haxelib name="openfl" />
 	<haxelib name="swf" />
